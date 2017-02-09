@@ -55,17 +55,15 @@ use app\models\User;
 </head>
 <body>
 
+<div id="main_background"></div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-sm-4 sidebar3">
 
-            <div class="logo">
-                <img src="http://lorempixel.com/output/sports-q-c-64-64-2.jpg" class="img-responsive" alt="Logo">
-            </div>
-            <div class="name">
-                <p>Arshi S</p>
+            <div class="fa fa-book logo"></div>
 
-                <p>12 Contributions</p>
+            <div class="name">
+                <h3>Библиотека</h3>
             </div>
         </div>
     </div>
@@ -73,49 +71,53 @@ use app\models\User;
         <div class="col-md-3 col-sm-4 sidebar3">
             <div class="left-navigation">
                 <ul>
-                    <li><i class="fa fa-book" aria-hidden="true"></i>Books</li>
-                    <li><i class="fa fa-bookmark-o" aria-hidden="true"></i>Active Books <span
-                            class="activebooks pull-right">3</span></li>
-                    <li><i class="fa fa-trophy" aria-hidden="true"></i>Recommendations</li>
-                    <li><i class="fa fa-users" aria-hidden="true"></i>People</li>
-                    <li class="list">
-                        <div class="dropdown">
-                            <i class="fa fa-list" aria-hidden="true"></i>My Wishlist <i class="fa fa-plus pull-right"
-                                                                                        aria-hidden="true"></i>
-                        </div>
-                        <ul class="submenu hide">
-                            <li>The Sealed Nectar</li>
-                            <li>Pride and Prejudice</li>
-                            <li>HTML5 for Web Designers</li>
-                            <li>The 100, Michael H Heart</li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="category">
-                    <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Family Reading</li>
-                    <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Education</li>
-                    <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Business</li>
+                    <li><i class="fa fa-book" aria-hidden="true"></i>Книги</li>
+                    <!--<li><i class="fa fa-bookmark-o" aria-hidden="true"></i>Active Books <span
+                            class="activebooks pull-right">3</span></li>-->
+                    <li><i class="fa fa-print" aria-hidden="true"></i>Издательства</li>
+                    <li><i class="fa fa-users" aria-hidden="true"></i>Авторы</li>
                 </ul>
                 <ul>
-                    <li><i class="fa fa-cog" aria-hidden="true"></i>Settings</li>
-                    <li><i class="fa fa-power-off" aria-hidden="true"></i>Logout</li>
+                    <li><i class="fa fa-search" aria-hidden="true"></i>Поиск</li>
                 </ul>
+                <!--<li class="list">
+                    <div class="dropdown">
+                        <i class="fa fa-list" aria-hidden="true"></i>My Wishlist <i class="fa fa-plus pull-right"
+                                                                                    aria-hidden="true"></i>
             </div>
+            <ul class="submenu hide">
+                <li>The Sealed Nectar</li>
+                <li>Pride and Prejudice</li>
+                <li>HTML5 for Web Designers</li>
+                <li>The 100, Michael H Heart</li>
+            </ul>
+            </li>
+            </ul>-->
+            <!-- <ul class="category">
+                 <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Family Reading</li>
+                 <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Education</li>
+                 <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Business</li>
+             </ul>
+             <ul>
+                 <li><i class="fa fa-cog" aria-hidden="true"></i>Settings</li>
+                 <li><i class="fa fa-power-off" aria-hidden="true"></i>Logout</li>
+             </ul>-->
         </div>
-        <div class="col-md-8 main-content">
-            <!--<p>Refer comment section below, to understand how the dropdown menu works using a one-line Jquery</p>-->
-            <P>Inspired by Gleb Kuznetsov's <a href="https://dribbble.com/shots/2364939-Book-iOS-App-Navigation"
-                                               target="_blank"><i>dribbble</i></a></p>
-
-            <p>Feedbacks appreciated! :)</p>
-
-            <p>Connect with me on <a href="https://twitter.com/Arshizz" target="_blank">
-                    <button class="btn btn-primary"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</button>
-                </a> for upcoming cool stuff!
-            </p>
-        </div>
-
     </div>
+    <div class="col-md-8 main-content">
+        <!--<p>Refer comment section below, to understand how the dropdown menu works using a one-line Jquery</p>-->
+        <P>Inspired by Gleb Kuznetsov's <a href="https://dribbble.com/shots/2364939-Book-iOS-App-Navigation"
+                                           target="_blank"><i>dribbble</i></a></p>
+
+        <p>Feedbacks appreciated! :)</p>
+
+        <p>Connect with me on <a href="https://twitter.com/Arshizz" target="_blank">
+                <button class="btn btn-primary"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</button>
+            </a> for upcoming cool stuff!
+        </p>
+    </div>
+
+</div>
 </div>
 
 <!-- Latest compiled and minified JavaScript -->
@@ -124,11 +126,11 @@ use app\models\User;
         crossorigin="anonymous"></script>
 
 <script src="/js/helper.js"></script>
-<script src="/js/Form.js"></script>
+<!--<script src="/js/Form.js"></script>
 <script src="/js/FormValidation.js"></script>
-<script src="/js/user/LoginForm.js"></script>
+<script src="/js/user/LoginForm.js"></script>-->
 
-<?php echo $this->js ?>
+<?php #echo $this->js ?>
 
 <script type="text/javascript">
 
@@ -138,11 +140,9 @@ use app\models\User;
         });
     };
 
-    app.helper.extend(app.user.LoginForm, app.Form);
-    var loginForm = new app.user.LoginForm($(".login_form"));
+    /*app.helper.extend(app.user.LoginForm, app.Form);
+     var loginForm = new app.user.LoginForm($(".login_form"));*/
 
-    <?php /** @type {namespace} - Список валидаторов - см. файл конфигурации. */ ?>
-    loginForm.validators = <?php Html::j(Config::inst()->user['validators']) ?>;
 </script>
 
 </body>

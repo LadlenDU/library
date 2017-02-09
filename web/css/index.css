@@ -3,7 +3,8 @@
     border: 1px solid transparent;
 }
 
-body {
+/*body {*/
+#main_background {
     background: #4143A3;
     /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(left top, #1E1E45, #4143A3, #848FD8, #CFD5EE, #ECEDF9);
@@ -15,6 +16,15 @@ body {
     background: linear-gradient(to bottom right, #1E1E45, #4143A3, #848FD8, #CFD5EE, #ECEDF9);
     /* Standard syntax */
     height: 100vh;
+    color: #fff;
+
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+body {
     color: #fff;
 }
 
@@ -125,4 +135,8 @@ li:hover {
 
 .main-content > p > a {
     color: white;
+}
+
+.logo {
+    font-size: 5em;
 }
