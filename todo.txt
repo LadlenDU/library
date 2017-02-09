@@ -1,0 +1,13 @@
+В бд проверить работу
+ ON DELETE SET NULL
+ ON UPDATE CASCADE ..
+  `author_book`
+  (
+    `author_id`          INT(11) UNSIGNED NOT NULL,
+    `book_id`          INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`author_id`, book_id),
+    FOREIGN KEY (`author_id`) REFERENCES `author` (`id`)
+      ON DELETE SET NULL
+
+      - что если будет 2 NULL и т. п.?
+

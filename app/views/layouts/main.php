@@ -1,0 +1,149 @@
+<?php
+
+/* @var $this app\core\View */
+/* @var $values app\core\Container */
+
+use app\core\Config;
+use app\core\Csrf;
+use app\core\HtmlForm;
+use app\helpers\Html;
+use app\models\User;
+
+?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="<?php echo Config::inst()->globalEncoding ?>"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="csrf-param" content="<?php echo Csrf::inst()->getCsrfTokenName() ?>">
+    <meta name="csrf-token" content="<?php echo Csrf::inst()->getCsrfToken() ?>">
+
+    <title><?php echo $this->title ?></title>
+
+    <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link media="all" type="text/css" rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="/css/index.css">
+
+    <?php echo $this->css ?>
+
+    <script type="text/javascript">
+        // <![CDATA[
+
+        /** @type {namespace} - Общий объект приложения. */
+        var app = {};
+
+        // ]]>
+    </script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-sm-4 sidebar3">
+
+            <div class="logo">
+                <img src="http://lorempixel.com/output/sports-q-c-64-64-2.jpg" class="img-responsive" alt="Logo">
+            </div>
+            <div class="name">
+                <p>Arshi S</p>
+
+                <p>12 Contributions</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-4 sidebar3">
+            <div class="left-navigation">
+                <ul>
+                    <li><i class="fa fa-book" aria-hidden="true"></i>Books</li>
+                    <li><i class="fa fa-bookmark-o" aria-hidden="true"></i>Active Books <span
+                            class="activebooks pull-right">3</span></li>
+                    <li><i class="fa fa-trophy" aria-hidden="true"></i>Recommendations</li>
+                    <li><i class="fa fa-users" aria-hidden="true"></i>People</li>
+                    <li class="list">
+                        <div class="dropdown">
+                            <i class="fa fa-list" aria-hidden="true"></i>My Wishlist <i class="fa fa-plus pull-right"
+                                                                                        aria-hidden="true"></i>
+                        </div>
+                        <ul class="submenu hide">
+                            <li>The Sealed Nectar</li>
+                            <li>Pride and Prejudice</li>
+                            <li>HTML5 for Web Designers</li>
+                            <li>The 100, Michael H Heart</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="category">
+                    <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Family Reading</li>
+                    <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Education</li>
+                    <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Business</li>
+                </ul>
+                <ul>
+                    <li><i class="fa fa-cog" aria-hidden="true"></i>Settings</li>
+                    <li><i class="fa fa-power-off" aria-hidden="true"></i>Logout</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 main-content">
+            <!--<p>Refer comment section below, to understand how the dropdown menu works using a one-line Jquery</p>-->
+            <P>Inspired by Gleb Kuznetsov's <a href="https://dribbble.com/shots/2364939-Book-iOS-App-Navigation"
+                                               target="_blank"><i>dribbble</i></a></p>
+
+            <p>Feedbacks appreciated! :)</p>
+
+            <p>Connect with me on <a href="https://twitter.com/Arshizz" target="_blank">
+                    <button class="btn btn-primary"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</button>
+                </a> for upcoming cool stuff!
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script src="/js/helper.js"></script>
+<script src="/js/Form.js"></script>
+<script src="/js/FormValidation.js"></script>
+<script src="/js/user/LoginForm.js"></script>
+
+<?php echo $this->js ?>
+
+<script type="text/javascript">
+
+    window.onload = function () {
+        $('.dropdown').click(function () {
+            $(this).siblings(".submenu").toggleClass('hide');
+        });
+    };
+
+    app.helper.extend(app.user.LoginForm, app.Form);
+    var loginForm = new app.user.LoginForm($(".login_form"));
+
+    <?php /** @type {namespace} - Список валидаторов - см. файл конфигурации. */ ?>
+    loginForm.validators = <?php Html::j(Config::inst()->user['validators']) ?>;
+</script>
+
+</body>
+</html>
