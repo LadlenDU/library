@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'class' => '\\app\\core\\db\\DbPDO',
+    'driver' => 'pdo_mysql',
     'connection' => [
         'host' => 'localhost',
         'user' => 'root',
         'password' => 'temp123',
-        'dbname' => 'wfl',
+        'dbname' => 'library',
         'charset' => 'UTF8',
     ],
 ];

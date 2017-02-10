@@ -57,8 +57,11 @@ use app\core\Csrf;
 </head>
 <body>
 
+<noscript><div class="container noscript"><h2>Включите, пожалуйста, JavaScript</h2></div></noscript>
+
+<div id="content_wrapper" style="display: none">
 <div id="main_background"></div>
-<div class="container-fluid">
+<div id="main_container" class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-sm-4 sidebar3">
 
@@ -114,7 +117,7 @@ use app\core\Csrf;
 
     </div>
 </div>
-
+</div>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -129,11 +132,13 @@ use app\core\Csrf;
 
 <script type="text/javascript">
 
-    window.onload = function () {
+    $(function () {
         $('.dropdown').click(function () {
             $(this).siblings(".submenu").toggleClass('hide');
         });
-    };
+
+        $('#content_wrapper').show();
+    });
 
     /*app.helper.extend(app.user.LoginForm, app.Form);
      var loginForm = new app.user.LoginForm($(".login_form"));*/

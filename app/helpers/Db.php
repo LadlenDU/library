@@ -1,6 +1,9 @@
 <?php
 
-namespace app\helpers;
+namespace helpers;
+
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Db - работа с БД через общий объект.
@@ -28,12 +31,26 @@ class Db
      */
     public static function obj()
     {
-        if (!self::$bdClassInstance)
+        $paths = array("/path/to/entity-files");
+        $isDevMode = false;
+
+// the connection configuration
+        $dbParams = array(
+            'driver'   => 'pdo_mysql',
+            'user'     => 'root',
+            'password' => '',
+            'dbname'   => 'foo',
+        );
+
+        $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+        $entityManager = EntityManager::create($dbParams, $config);
+
+        /*if (!self::$bdClassInstance)
         {
             $className = \app\core\Config::inst()->database['class'];
             self::$bdClassInstance = new $className();
         }
-        return self::$bdClassInstance;
+        return self::$bdClassInstance;*/
     }
 
 }
