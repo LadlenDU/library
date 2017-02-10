@@ -22,7 +22,19 @@ $conn = array(
     'user'     => 'root',
     'password' => 'temp123',
     'dbname'   => 'library',
+    'driverOptions' => [
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+    ]
 );
+
+#$driver = new \Doctrine\ORM\Mapping\Driver\PHPDriver(__DIR__.'/src');
+#Doctrine\Common\Persistence\Mapping\Driver\PHPDriver
+#$driverF = new \Doctrine\Common\Persistence\Mapping\Driver\PHPDriver(__DIR__ . '/src');
+#$config->setMetadataDriverImpl($driverF);
+//$driverImpl = $config->newDefaultAnnotationDriver(__DIR__ . '/src');
+#$driverImpl = $config->newDefaultAnnotationDriver(__DIR__ . '/vendor/doctrine/orm/lib');
+$driverImpl = $config->newDefaultAnnotationDriver(__DIR__ . '/vendor/doctrine/annotations/lib');
+$config->setMetadataDriverImpl($driverImpl);
 
 // obtaining the entity manager
 $entityManager = EntityManager::create($conn, $config);
