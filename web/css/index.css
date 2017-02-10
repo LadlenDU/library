@@ -25,13 +25,14 @@
 }
 
 body {
-    color: #fff;
+    color: #000;
 }
 
 .sidebar3 {
     padding-top: 30px;
     padding-left: 30px;
     padding-right: 0px;
+    color: #fff;
 }
 
 .logo {

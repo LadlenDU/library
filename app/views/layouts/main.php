@@ -1,13 +1,10 @@
 <?php
-
+//TODO: проверить получаемые значения
 /* @var $this app\core\View */
 /* @var $values app\core\Container */
 
 use app\core\Config;
 use app\core\Csrf;
-use app\core\HtmlForm;
-use app\helpers\Html;
-use app\models\User;
 
 ?>
 <!DOCTYPE html>
@@ -38,6 +35,11 @@ use app\models\User;
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
 
     <link rel="stylesheet" href="/css/index.css">
 
@@ -93,31 +95,24 @@ use app\models\User;
             </ul>
             </li>
             </ul>-->
-            <!-- <ul class="category">
-                 <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Family Reading</li>
-                 <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Education</li>
-                 <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Business</li>
-             </ul>
-             <ul>
-                 <li><i class="fa fa-cog" aria-hidden="true"></i>Settings</li>
-                 <li><i class="fa fa-power-off" aria-hidden="true"></i>Logout</li>
-             </ul>-->
+                <!-- <ul class="category">
+                     <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Family Reading</li>
+                     <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Education</li>
+                     <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Business</li>
+                 </ul>
+                 <ul>
+                     <li><i class="fa fa-cog" aria-hidden="true"></i>Settings</li>
+                     <li><i class="fa fa-power-off" aria-hidden="true"></i>Logout</li>
+                 </ul>-->
+            </div>
         </div>
+        <div class="col-md-8 main-content">
+
+            <?php echo $values->content ?>
+
+        </div>
+
     </div>
-    <div class="col-md-8 main-content">
-        <!--<p>Refer comment section below, to understand how the dropdown menu works using a one-line Jquery</p>-->
-        <P>Inspired by Gleb Kuznetsov's <a href="https://dribbble.com/shots/2364939-Book-iOS-App-Navigation"
-                                           target="_blank"><i>dribbble</i></a></p>
-
-        <p>Feedbacks appreciated! :)</p>
-
-        <p>Connect with me on <a href="https://twitter.com/Arshizz" target="_blank">
-                <button class="btn btn-primary"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</button>
-            </a> for upcoming cool stuff!
-        </p>
-    </div>
-
-</div>
 </div>
 
 <!-- Latest compiled and minified JavaScript -->
