@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -59,7 +59,7 @@ class Author
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Book", inversedBy="author")
+     * @ORM\ManyToMany(targetEntity="Entities\Book", inversedBy="author")
      * @ORM\JoinTable(name="author_book",
      *   joinColumns={
      *     @ORM\JoinColumn(name="author_id", referencedColumnName="id")

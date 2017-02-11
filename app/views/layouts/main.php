@@ -1,5 +1,5 @@
 <?php
-//TODO: проверить получаемые значения
+
 /* @var $this app\core\View */
 /* @var $values app\core\Container */
 

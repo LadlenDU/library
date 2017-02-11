@@ -36,7 +36,7 @@ class ComposerStaticInitbe4ecca6885a0461562591190df7ae8f
     public static $prefixDirsPsr4 = array (
         'app\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/',
+            0 => __DIR__ . '/../..' . '/app',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (

@@ -7,7 +7,8 @@ require_once "vendor/autoload.php";
 
 // Create a simple "default" Doctrine ORM configuration for Annotations
 $isDevMode = true;
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
+#$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/app/Entities"), $isDevMode);
 // or if you prefer yaml or XML
 //$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
 //$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
@@ -18,10 +19,10 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $i
     'path' => __DIR__ . '/db.sqlite',
 );*/
 $conn = array(
-    'driver'   => 'pdo_mysql',
-    'user'     => 'root',
+    'driver' => 'pdo_mysql',
+    'user' => 'root',
     'password' => 'temp123',
-    'dbname'   => 'library',
+    'dbname' => 'library',
     'driverOptions' => [
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
     ]
@@ -33,8 +34,8 @@ $conn = array(
 #$config->setMetadataDriverImpl($driverF);
 //$driverImpl = $config->newDefaultAnnotationDriver(__DIR__ . '/src');
 #$driverImpl = $config->newDefaultAnnotationDriver(__DIR__ . '/vendor/doctrine/orm/lib');
-$driverImpl = $config->newDefaultAnnotationDriver(__DIR__ . '/vendor/doctrine/annotations/lib');
-$config->setMetadataDriverImpl($driverImpl);
+#$driverImpl = $config->newDefaultAnnotationDriver(__DIR__ . '/vendor/doctrine/annotations/lib');
+#$config->setMetadataDriverImpl($driverImpl);
 
 // obtaining the entity manager
 $entityManager = EntityManager::create($conn, $config);
