@@ -1,0 +1,24 @@
+{
+  "name": "ladlen/library",
+  "description": "Библиотека",
+  "keywords": [
+    "library",
+    "website"
+  ],
+  "authors": [
+    {
+      "name": "Dolgov Dmytryy",
+      "email": "TwilightTower@mail.ru",
+      "role": "Development"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0, <=5.6",
+    "doctrine/orm": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": "\\"
+    }
+  }
+}

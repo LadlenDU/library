@@ -3,7 +3,7 @@
 namespace app\core;
 
 use app\core\Container;
-use app\base\Controller;
+use app\core\Controller;
 
 class View
 {

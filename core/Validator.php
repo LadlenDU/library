@@ -4,11 +4,11 @@ namespace app\core;
 
 //use app\core\Web;
 use app\core\Config;
-use app\base\IFormModel;
+use app\core\IFormModel;
 use app\helpers\Helper;
 use app\helpers\Db;
 
-//use app\base\Html;
+//use app\core\Html;
 
 /**
  * Validator отвечает за проверку значений.
@@ -20,7 +20,7 @@ class Validator
     /** @var array Функция для получения значений полей. */
     protected $retrievalFunction = ['\\app\\core\\Web', 'getPostData'];
 
-    /** @var \app\base\FormModel Класс модели, для которой проверяет значения валидатор. */
+    /** @var \app\core\FormModel Класс модели, для которой проверяет значения валидатор. */
     protected $modelClass;
 
     /** @var string Строка описывающая последнюю ошибку. */

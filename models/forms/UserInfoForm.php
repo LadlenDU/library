@@ -8,7 +8,7 @@ use app\core\Validator;
 use app\helpers\Db;
 use app\helpers\Helper;
 use app\helpers\Image;
-use app\base\IFormModel;
+use app\core\IFormModel;
 use app\models\User;
 use app\models\Language;
 

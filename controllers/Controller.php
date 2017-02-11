@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\core\Web;
 use app\models\Language;
 
-class Controller extends \app\base\Controller
+class Controller extends \app\core\Controller
 {
     public function actionIndex()
     {

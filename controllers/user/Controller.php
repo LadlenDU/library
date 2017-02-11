@@ -8,7 +8,7 @@ use app\core\ContainerHSC;
 use app\models\User;
 use app\helpers\Helper;
 
-class Controller extends \app\base\Controller
+class Controller extends \app\core\Controller
 {
     public function actionIndex()
     {

@@ -2,11 +2,11 @@
 
 return [
     'driver' => 'pdo_mysql',
-    'connection' => [
-        'host' => 'localhost',
-        'user' => 'root',
-        'password' => 'temp123',
-        'dbname' => 'library',
-        'charset' => 'UTF8',
-    ],
+    'host' => 'localhost',
+    'port' => '3306',
+    'user' => 'root',
+    'password' => 'temp123',
+    'dbname' => 'library',
+    'charset' => 'UTF8',
 ];
+

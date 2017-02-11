@@ -3,7 +3,7 @@
 namespace app\core;
 
 //use app\core\Web;
-use app\base\Singleton;
+use app\core\Singleton;
 
 /**
  * Csrf служит для защиты от CSRF атак.

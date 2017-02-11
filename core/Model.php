@@ -1,13 +1,13 @@
 <?php
 
-namespace app\base;
+namespace app\core;
 
-//use app\base\IDatabase;
+//use app\core\IDatabase;
 #use app\helpers\Db;
 
 abstract class Model
 {
-    /** @var \app\base\IDatabase Класс для работы с БД. */
+    /** @var \app\core\IDatabase Класс для работы с БД. */
     protected $db;
 
     public function __construct()
@@ -18,7 +18,7 @@ abstract class Model
     /**
      * Установка класса для работы с БД.
      *
-     * @param \app\base\IDatabase $db
+     * @param \app\core\IDatabase $db
      */
     protected function setDBHandle(IDatabase $db)
     {

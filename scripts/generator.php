@@ -1,5 +1,8 @@
 <?php
 include '../vendor/autoload.php';
+
+$connectionParams = include '../config/db.php';
+
 $classLoader = new \Doctrine\Common\ClassLoader('Entities', __DIR__);
 $classLoader->register();
 
@@ -9,12 +12,12 @@ $classLoader->register();
 // config
 $config = new \Doctrine\ORM\Configuration();
 $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver(__DIR__ . '/Entities'));
+#$config->setMetadataDriverImpl($config->newDefaultAnnotationDriver(__DIR__ . '/../src/docrtine/entities'));
 $config->setMetadataCacheImpl(new \Doctrine\Common\Cache\ArrayCache);
 $config->setProxyDir(__DIR__ . '/Proxies');
 $config->setProxyNamespace('Proxies');
 
-
-$connectionParams = array(
+/*$connectionParams = array(
     'driver' => 'pdo_mysql',
     'host' => 'localhost',
     'port' => '3306',
@@ -22,7 +25,7 @@ $connectionParams = array(
     'password' => 'temp123',
     'dbname' => 'library',
     'charset' => 'utf8',
-);
+);*/
 
 $em = \Doctrine\ORM\EntityManager::create($connectionParams, $config);
 
@@ -43,5 +46,7 @@ $generator = new Doctrine\ORM\Tools\EntityGenerator();
 $generator->setUpdateEntityIfExists(true);
 $generator->setGenerateStubMethods(true);
 $generator->setGenerateAnnotations(true);
-$generator->generate($metadata, __DIR__ . '/Entities');
-print 'Done!';
+#$generator->generate($metadata, __DIR__ . '/Entities');
+$generator->generate($metadata, __DIR__ . '/../src/doctrine/entities');
+
+print "Done!\n";

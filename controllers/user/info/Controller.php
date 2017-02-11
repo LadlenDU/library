@@ -10,7 +10,7 @@ use app\core\Validator;
 use app\core\ContainerHSC;
 use app\helpers\Helper;
 
-class Controller extends \app\base\Controller
+class Controller extends \app\core\Controller
 {
     public function actionIndex()
     {
