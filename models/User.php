@@ -4,6 +4,9 @@ namespace app\models;
 
 use app\core\Model;
 use app\core\Web;
+use app\helpers\Db;
+use Entities;
+
 
 /**
  * User модель пользователя.
@@ -34,7 +37,12 @@ class User extends Model
     {
         $success = false;
 
-        $result = $this->db->rawSelectQuery(
+        $user = new User;
+
+        Db::em()->persist($user);
+        Db::em()->flush();
+
+        /*$result = $this->db->rawSelectQuery(
             'SELECT `id` FROM `user` WHERE `login` = :login AND `password_hash` = PASSWORD(:password) AND '
             . $this->sqlWhereNotDeleted() . ' LIMIT 1',
             [':login' => $login, ':password' => $password]
@@ -45,7 +53,11 @@ class User extends Model
             Web::startSession();
             $_SESSION['logged_user']['id'] = $result[0]['id'];
             $success = true;
-        }
+        }*/
+
+        Setup::createConfiguration($isDevMode);
+
+        EntityManager::create($connectionParams, $config);
 
         return $success;
     }

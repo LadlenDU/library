@@ -2,7 +2,7 @@
 
 namespace app\core;
 
-use app\core\Singleton;
+#use app\core\Singleton;
 
 /**
  * Config служит для работы с конфигурацией.

@@ -1,7 +1,8 @@
 <?php
 include '../vendor/autoload.php';
 
-$connectionParams = include '../config/db.php';
+$dbParams = include '../config/db.php';
+$connectionParams = $dbParams['connection'];
 
 $classLoader = new \Doctrine\Common\ClassLoader('Entities', __DIR__);
 $classLoader->register();

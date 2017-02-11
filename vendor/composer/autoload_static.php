@@ -25,6 +25,10 @@ class ComposerStaticInitbe4ecca6885a0461562591190df7ae8f
         array (
             'Psr\\Log\\' => 8,
         ),
+        'E' => 
+        array (
+            'Entities\\' => 9,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -53,6 +57,10 @@ class ComposerStaticInitbe4ecca6885a0461562591190df7ae8f
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Entities\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/doctrine/entities',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

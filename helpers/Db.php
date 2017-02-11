@@ -1,7 +1,8 @@
 <?php
 
-namespace helpers;
+namespace app\helpers;
 
+use app\core\Config;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
@@ -12,7 +13,7 @@ use Doctrine\ORM\EntityManager;
  */
 class Db
 {
-    protected static $bdClassInstance;
+    protected static $entityManager;
 
     protected function __construct()
     {
@@ -27,30 +28,19 @@ class Db
     }
 
     /**
-     * @return mixed Объект singleton в соответствии с настройками.
+     * @return mixed Общий объект EntityManager в соответствии с настройками.
      */
-    public static function obj()
+    public static function em()
     {
-        $paths = array("/path/to/entity-files");
-        $isDevMode = false;
-
-// the connection configuration
-        $dbParams = array(
-            'driver'   => 'pdo_mysql',
-            'user'     => 'root',
-            'password' => '',
-            'dbname'   => 'foo',
-        );
-
-        $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
-        $entityManager = EntityManager::create($dbParams, $config);
-
-        /*if (!self::$bdClassInstance)
+        if (!self::$entityManager)
         {
-            $className = \app\core\Config::inst()->database['class'];
-            self::$bdClassInstance = new $className();
+            $isDevMode = Config::inst()->database['debug'];
+            $dbParams = Config::inst()->database['connection'];
+
+            $config = Setup::createConfiguration($isDevMode);
+            self::$entityManager = EntityManager::create($dbParams, $config);
         }
-        return self::$bdClassInstance;*/
+        return self::$entityManager;
     }
 
 }

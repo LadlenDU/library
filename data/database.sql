@@ -127,7 +127,6 @@ CREATE TABLE `user`
   `password_hash` VARCHAR(255)     NOT NULL,
   `created`       TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
   `modified`      TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
-  `deleted`       DATETIME         NULL                          DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE (`login`),
   CHECK (`login` > '')
@@ -135,3 +134,6 @@ CREATE TABLE `user`
   ENGINE = InnoDB
   CHARSET = utf8
   COMMENT 'Пользователи (на данный момент все администраторы)';
+
+INSERT INTO `user`
+SET login = 'admin', password_hash = PASSWORD('temp123');
