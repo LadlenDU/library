@@ -3,7 +3,7 @@
 namespace app\base;
 
 //use app\base\IDatabase;
-use app\helpers\Db;
+#use app\helpers\Db;
 
 abstract class Model
 {
@@ -12,7 +12,7 @@ abstract class Model
 
     public function __construct()
     {
-        $this->setDBHandle(Db::obj());
+        #$this->setDBHandle(Db::obj());
     }
 
     /**

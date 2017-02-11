@@ -11,6 +11,8 @@ DROP TABLE IF EXISTS `publisher`;
 DROP TABLE IF EXISTS `edition`;
 DROP TABLE IF EXISTS `book`;
 
+DROP TABLE IF EXISTS `user`;
+
 CREATE TABLE `book`
 (
   `id`          INT(11) UNSIGNED NOT NULL,
@@ -118,4 +120,18 @@ CREATE TABLE `author_book`
   CHARSET = utf8
   COMMENT 'Связь авторов и книг';
 
-
+CREATE TABLE `user`
+(
+  `id`            INT(11) UNSIGNED NOT NULL                      AUTO_INCREMENT,
+  `login`         VARCHAR(50)      NOT NULL,
+  `password_hash` VARCHAR(255)     NOT NULL,
+  `created`       TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
+  `modified`      TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted`       DATETIME         NULL                          DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE (`login`),
+  CHECK (`login` > '')
+)
+  ENGINE = InnoDB
+  CHARSET = utf8
+  COMMENT 'Пользователи (на данный момент все администраторы)';
