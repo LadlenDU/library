@@ -4,30 +4,32 @@ namespace app\models;
 
 #use app\core\Model;
 use app\core\Web;
-use app\helpers\Db;
+use app\core\EntityModel;
+#use app\helpers\Db;
 #use Entities;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Mapping\ClassMetadata;
+#use Doctrine\ORM\EntityRepository;
+#use Doctrine\ORM\Mapping\ClassMetadata;
 
 /**
  * User модель пользователя.
  *
  * @package app\models
  */
-class User extends EntityRepository//extends Model
+class User extends EntityModel
 {
     /** @var int Идентификатор пользователя. */
     protected $id;
 
     public function __construct($id = null)
     {
-        //$yy = new \Entities\User;
         $this->id = $id;
-        $metadata = new ClassMetadata('\\Entities\\User');
-        parent::__construct(Db::em(), $metadata);
+        parent::__construct();
     }
 
-    public function attributeLabels() {}
+    public function entityName()
+    {
+        return '\\Entities\\User';
+    }
 
     /**
      * Залогинить пользователя.
@@ -38,36 +40,13 @@ class User extends EntityRepository//extends Model
      */
     public function logIn($login, $password)
     {
-        $success = false;
-
-        $user = new User;
-
-        $rt = $this->createQueryBuilder('u')
-            ->where('u.login = :login')
-            ->setParameter('login', $login)
+        $res = $this->createQueryBuilder('u')
+            ->where('u.login = :login AND u.passwordHash = :password')
+            ->setParameters(['login' => $login, 'password' => $password])
             ->getQuery()
             ->getOneOrNullResult();
 
-        return $rt;
-
-        #Db::em()->persist($user);
-        #Db::em()->flush();
-
-        /*$result = $this->db->rawSelectQuery(
-            'SELECT `id` FROM `user` WHERE `login` = :login AND `password_hash` = PASSWORD(:password) AND '
-            . $this->sqlWhereNotDeleted() . ' LIMIT 1',
-            [':login' => $login, ':password' => $password]
-        );
-
-        if (count($result) == 1)
-        {
-            Web::startSession();
-            $_SESSION['logged_user']['id'] = $result[0]['id'];
-            $success = true;
-        }*/
-
-
-        return $success;
+        return (bool)$res;
     }
 
     /**

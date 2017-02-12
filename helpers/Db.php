@@ -59,7 +59,6 @@ class Db
             $config->setMetadataDriverImpl($driver);
 
             self::$entityManager = EntityManager::create($connectionParams, $config);
-
         }
         return self::$entityManager;
     }

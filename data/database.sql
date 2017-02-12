@@ -136,4 +136,4 @@ CREATE TABLE `user`
   COMMENT 'Пользователи (на данный момент все администраторы)';
 
 INSERT INTO `user`
-SET login = 'admin', password_hash = PASSWORD('temp123');
+SET login = 'admin', password_hash = 'temp123';
