@@ -132,6 +132,7 @@ use app\core\Csrf;
 <?php #echo $this->js ?>
 
 <script type="text/javascript">
+    // <![CDATA[
 
     $(function () {
         /*$('.dropdown').click(function () {
@@ -144,6 +145,7 @@ use app\core\Csrf;
     /*app.helper.extend(app.user.LoginForm, app.Form);
      var loginForm = new app.user.LoginForm($(".login_form"));*/
 
+    // ]]>
 </script>
 
 </body>

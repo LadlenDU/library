@@ -1,7 +1,31 @@
 "use strict";   //TODO: не надо ли убрать "use strict" ???
-//TODO: добавить комментарии в ф-ях ниже
 /** @type {Object} - Содержит общие вспомогательные функции. */
 app.helper = {};
+
+app.dataTableInfo = {
+    "language": {
+        "processing": "Подождите...",
+        "search": "Поиск:",
+        "lengthMenu": "Показать _MENU_ записей",
+        "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+        "infoEmpty": "Записи с 0 до 0 из 0 записей",
+        "infoFiltered": "(отфильтровано из _MAX_ записей)",
+        "infoPostFix": "",
+        "loadingRecords": "Загрузка записей...",
+        "zeroRecords": "Записи отсутствуют.",
+        "emptyTable": "В таблице отсутствуют данные",
+        "paginate": {
+            "first": "Первая",
+            "previous": "Предыдущая",
+            "next": "Следующая",
+            "last": "Последняя"
+        },
+        "aria": {
+            "sortAscending": ": активировать для сортировки столбца по возрастанию",
+            "sortDescending": ": активировать для сортировки столбца по убыванию"
+        }
+    }
+};
 
 /**
  * Запись в консоль (если работает).
@@ -54,84 +78,6 @@ app.helper.extend = function (Child, Parent) {
     Child.superclass = Parent.prototype;
 };
 
-/**
- * Добавляет JS файл в конец <head> (если ещё не добавлен).
- *
- * @param {string} path - Путь к файлу.
- */
-/*app.helper.appendJsFile = function(path) {
- if (!this.appendedJsFiles) {
- this.appendedJsFiles = [];
- }
-
- //Object.getPrototypeOf(this).
-
- path = path.trim();
-
- if (this.appendedJsFiles.indexOf(path) == -1) {
- var imported = document.createElement('script');
- imported.src = path;
- document.head.appendChild(imported);
-
- this.appendedJsFiles.push(path);
- }
- else
- {
- app.helper.log("Attempt to include JS file '" + path + "' when it have already been included.");
- }
- }*/
-//app.helper.appendJsFile.appendedJsFiles =
-
-/*,
- ifJson: function (data) {
- try {
- jQuery.parseJSON(data)
- return true;
- } catch (e) {
- return false;
- }
- },*/
-
-/*,
- showError: function (data) {
- alert("Произошла ошибка: " + data);
- this.logInfo("Error: " + data);
- },
- implode: function (glue, pieces) {
- return ((pieces instanceof Array) ? pieces.join(glue) : pieces);
- },*/
-/**
- * Вставка параметра URL
- */
-/*insertUrlParam: function (urlParams, key, value) {
- key = encodeURI(key);
- value = encodeURI(value);
-
- var kvp = urlParams.split('&');
-
- var i = kvp.length;
- var x;
- while (i--) {
- x = kvp[i].split('=');
-
- if (x[0] == key) {
- x[1] = value;
- kvp[i] = x.join('=');
- break;
- }
- }
-
- if (i < 0) {
- kvp[kvp.length] = [key, value].join('=');
- }
-
- if (kvp[0] == "") {
- kvp.shift();
- }
-
- return kvp.join('&');
- }*/
-
 //TODO: возможно, не следует менять прототипы из соображений производительности
 
 if (!String.prototype.trim) {
@@ -165,26 +111,3 @@ if (!String.prototype.sprintf) {
         };
     })();
 }
-
-/*app.helper.fsprint = function(str) {
- var modStr = str;
- for (var i = 1; i < arguments.length; i++) {
- modStr = modStr.replace("%s", arguments[i]);
- }
- return modStr;
- }*/
-
-// TODO: избавиться от этого
-/*$(function () {
- var data = {ajax: 1};
- data[$('meta[name="csrf-param"]').attr("content")] = $('meta[name="csrf-token"]').attr("content");
- if (app.helper.getUrlParam("debug")) {
- data["debug"] = 1;
- }
- $.ajaxSetup({
- //cache: false,
- type: "POST",
- data: data
- });
- });*/
-

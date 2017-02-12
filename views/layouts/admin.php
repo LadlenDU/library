@@ -38,12 +38,22 @@ use app\widgets\Navbar;
     <![endif]-->
 
     <!-- Datatable -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
 
     <link rel="stylesheet" href="<?php Html::mkLnk('/css/admin.css') ?>">
     <?php echo $this->css ?>
+
+    <script type="text/javascript">
+        // <![CDATA[
+
+        /** @type {namespace} - Общий объект приложения. */
+        var app = {};
+
+        // ]]>
+    </script>
 
 </head>
 <body>
@@ -68,7 +78,7 @@ use app\widgets\Navbar;
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 
-<!--<script src="<?php /*Html::mkLnk('/js/helper.js') */ ?>"></script>-->
+<script src="<?php Html::mkLnk('/js/helper.js') ?>"></script>
 <?php echo $this->js ?>
 
 <script type="text/javascript">
