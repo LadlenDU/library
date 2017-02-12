@@ -54,6 +54,7 @@ class Web
      */
     public static function startSession()
     {
+        //TODO: проверить началась ли отгрузка
         if (session_id() == '' || !isset($_SESSION))
         {
             session_start();

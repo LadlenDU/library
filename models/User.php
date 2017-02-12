@@ -2,18 +2,19 @@
 
 namespace app\models;
 
-use app\core\Model;
+#use app\core\Model;
 use app\core\Web;
 use app\helpers\Db;
-use Entities;
-
+#use Entities;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping\ClassMetadata;
 
 /**
  * User модель пользователя.
  *
  * @package app\models
  */
-class User extends Model
+class User extends EntityRepository//extends Model
 {
     /** @var int Идентификатор пользователя. */
     protected $id;
@@ -21,7 +22,8 @@ class User extends Model
     public function __construct($id = null)
     {
         $this->id = $id;
-        parent::__construct();
+        $metadata = new ClassMetadata('Entities\\User');
+        parent::__construct(Db::em(), $metadata);
     }
 
     public function attributeLabels() {}
@@ -39,8 +41,16 @@ class User extends Model
 
         $user = new User;
 
-        Db::em()->persist($user);
-        Db::em()->flush();
+        $rt = $this->createQueryBuilder('u')
+            ->where('u.login = :login')
+            ->setParameter('login', $login)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $rt;
+
+        #Db::em()->persist($user);
+        #Db::em()->flush();
 
         /*$result = $this->db->rawSelectQuery(
             'SELECT `id` FROM `user` WHERE `login` = :login AND `password_hash` = PASSWORD(:password) AND '
@@ -55,9 +65,6 @@ class User extends Model
             $success = true;
         }*/
 
-        Setup::createConfiguration($isDevMode);
-
-        EntityManager::create($connectionParams, $config);
 
         return $success;
     }

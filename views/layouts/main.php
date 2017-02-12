@@ -3,6 +3,7 @@
 /* @var $this app\core\View */
 /* @var $values app\core\Container */
 
+use app\helpers\Html;
 use app\core\Config;
 use app\core\Csrf;
 
@@ -123,7 +124,7 @@ use app\core\Csrf;
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 
-<script src="/js/helper.js"></script>
+<script src="<?php Html::mkLnk('/js/helper.js') ?>"></script>
 <!--<script src="/js/Form.js"></script>
 <script src="/js/FormValidation.js"></script>
 <script src="/js/user/LoginForm.js"></script>-->

@@ -1,4 +1,17 @@
-<?php echo CommonWidget::headerPanel() ?>
+<?php
+
+/* @var $this app\core\View */
+/* @var $values app\core\Container */
+
+use app\widgets\Navbar;
+use app\widgets\Form;
+use app\helpers\Html;
+
+echo Navbar::headerPanel();
+
+$this->title = Html::createTitle('логин');
+
+?>
 
 <div class="container">
     <div class="row vertical-offset-100">
@@ -8,16 +21,16 @@
                     <h3 class="panel-title">Войти на сайт</h3>
                 </div>
                 <div class="panel-body">
-                    <?php echo FormWidget::startForm(
+                    <?php echo Form::startForm(
                         [
                             'accept-charset' => 'UTF-8',
                             'role' => 'form',
                             'method' => 'POST',
-                            'action' => '/user/login'
+                            'action' => '/admin/login'
                         ]
                     ) ?>
                     <fieldset
-                        <?php if ($wrong_login): ?>
+                        <?php if ($values->c('wrong_login')): ?>
                             class="has-error"
                         <?php endif; ?>
                         >
@@ -28,13 +41,13 @@
                             <input class="form-control" placeholder="Пароль" name="password" value="" type="password">
                         </div>
 
-                        <?php if ($wrong_login): ?>
+                        <?php if ($values->c('wrong_login')): ?>
                             <div class="form-group">Неправильный логин или пароль</div>
                         <?php endif; ?>
 
                         <input class="btn btn-lg btn-success btn-block" value="Логин" type="submit">
                     </fieldset>
-                    <?php echo FormWidget::endForm() ?>
+                    <?php echo Form::endForm() ?>
                 </div>
             </div>
         </div>

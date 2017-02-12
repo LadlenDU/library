@@ -178,4 +178,23 @@ class Html
     {
         return self::h($path, $show);
     }
+
+    /**
+     * Возвращает строку параметров для вставки в html тег.
+     *
+     * @param array $params список [параметр => значение[, ...]]
+     * @return string
+     */
+    public static function mkHtmlTagParams($params = [])
+    {
+        $s = '';
+
+        $params = (array)$params;
+        foreach ($params as $pName => $pVal)
+        {
+            $s .= ' ' . self::h($pName, false) . '="' . self::h($pVal, false) . '" ';
+        }
+
+        return $s;
+    }
 }

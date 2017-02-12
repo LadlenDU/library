@@ -41,21 +41,21 @@ use app\core\Csrf;
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
 
-    <link rel="stylesheet" href="<?php Html::mkLnk('/css/index.css') ?>">
-    <?php echo $scripts['css'] ?>
+    <link rel="stylesheet" href="<?php Html::mkLnk('/css/admin.css') ?>">
+    <?php echo $this->css ?>
 
 </head>
 <body>
 
 <div class="container">
-    <?php echo $content ?>
+    <?php echo $values->content ?>
 </div>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<script src="<?php Html::mkLnk('/js/helper.js') ?>"></script>
-<?php echo $scripts['js'] ?>
+<!--<script src="<?php /*Html::mkLnk('/js/helper.js') */?>"></script>-->
+<?php echo $this->js ?>
 
 </body>
 </html>

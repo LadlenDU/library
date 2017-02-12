@@ -2,6 +2,8 @@
 
 namespace app\widgets;
 
+use app\models\User;
+
 class Navbar
 {
     public static function headerPanel()
@@ -11,7 +13,7 @@ class Navbar
                 <div class="container">
                     <div class="navbar-header">';
 
-        if (UserComponent::getInstance()->getUserId())
+        if (User::loggedId())
         {
             $s .=
                 '<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w0-collapse">
@@ -22,9 +24,9 @@ class Navbar
                 </button>';
         }
 
-        $s .= '<a class="navbar-brand" href="/">Список сообщений</a>
+        $s .= '<a class="navbar-brand" href="/">Библиотека</a>
                     </div>';
-        if (UserComponent::getInstance()->getUserId())
+        if (User::loggedId())
         {
             $s .= '<div class="navbar-collapse collapse" id="w0-collapse">'
                 . self::htmlLogoutItem(
@@ -52,7 +54,7 @@ class Navbar
     {
         $s = '';
 
-        if (UserComponent::getInstance()->getUserId())
+        if (User::loggedId())
         {
             $params['form'] = isset($params['form']) ? $params['form'] : [];
             $params['button'] = isset($params['button']) ? $params['button'] : [];
