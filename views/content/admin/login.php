@@ -26,7 +26,7 @@ $this->title = Html::createTitle('логин');
                             'accept-charset' => 'UTF-8',
                             'role' => 'form',
                             'method' => 'POST',
-                            'action' => '/admin/login'
+                            'action' => '/admin?action=login'
                         ]
                     ) ?>
                     <fieldset

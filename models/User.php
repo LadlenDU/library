@@ -21,8 +21,9 @@ class User extends EntityRepository//extends Model
 
     public function __construct($id = null)
     {
+        //$yy = new \Entities\User;
         $this->id = $id;
-        $metadata = new ClassMetadata('Entities\\User');
+        $metadata = new ClassMetadata('\\Entities\\User');
         parent::__construct(Db::em(), $metadata);
     }
 

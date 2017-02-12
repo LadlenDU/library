@@ -13,16 +13,10 @@ if (version_compare(phpversion(), '5.4.0', '<') == true)
 
 ini_set('log_errors', 1);
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 define('WEB_DIR', __DIR__ . '/');
 define('APP_DIR', realpath(__DIR__ . '/..') . '/');
 
 $loader = require_once APP_DIR . 'vendor/autoload.php';
-
-//set_include_path(get_include_path() . PATH_SEPARATOR . realpath(__DIR__ . '/../'));
-//spl_autoload_register();
 
 if (Config::inst()->debug)
 {

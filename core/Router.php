@@ -55,7 +55,6 @@ class Router extends Singleton
         $path .= '/Controller';
 
         $file = Config::inst()->appDir . $path . '.php';
-        //$file = strtolower($file);  //TODO: нужен нормальный autoloader (например, composer) чтобы убрать это безобразие
         if (file_exists($file))
         {
             require($file);
