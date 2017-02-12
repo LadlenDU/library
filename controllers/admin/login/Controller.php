@@ -6,19 +6,8 @@ use app\core\Container;
 use app\models\User;
 use app\core\Web;
 
-class Controller extends \app\core\Controller
+class Controller extends \app\controllers\admin\Controller
 {
-    protected $layout = 'admin.php';
-
-    public function actionIndex()
-    {
-        if (User::loggedId())
-        {
-            Web::redirect('admin', ['action' => 'publishers']);
-        }
-        return $this->render('admin/login');
-    }
-
     public function actionLogin()
     {
         if (isset($_POST['login']))

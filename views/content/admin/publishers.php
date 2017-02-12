@@ -44,14 +44,16 @@ $this->title = Html::createTitle('список издательств');
         <tr>
             <td><?php Html::h($item->getName()) ?></td>
             <td>
-                <a href="/admin?action=modify&id=<?php urlencode($item->getId()) ?>">
-                    <input type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Редактировать
-                    </input>
-                </a>
-                <!--<button type="submit" class="btn btn-default btn-sm" name="remove" value="remove">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Удалить
-                </button>-->
+                <?php echo Form::startForm(['action' => '/admin/publisher?action=modify&id=' . urlencode($item->getId())]) ?>
+                <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-edit"></span>&nbsp;Редактировать
+                </button>
+                <?php echo Form::endForm() ?>
+                <?php echo Form::startForm(['action' => '/admin/publisher?action=remove&id=' . urlencode($item->getId())]) ?>
+                <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;Удалить
+                </button>
+                <?php echo Form::endForm() ?>
             </td>
         </tr>
     <?php endforeach; ?>
