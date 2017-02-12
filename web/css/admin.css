@@ -2,3 +2,7 @@ body {
     padding-top: 70px;
 }
 
+.noscript {
+    margin: 5em auto;
+    text-align: center;
+}

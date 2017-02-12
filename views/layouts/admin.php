@@ -6,6 +6,7 @@
 use app\helpers\Html;
 use app\core\Config;
 use app\core\Csrf;
+use app\widgets\Navbar;
 
 ?>
 <!DOCTYPE html>
@@ -47,15 +48,34 @@ use app\core\Csrf;
 </head>
 <body>
 
-<div class="container">
-    <?php echo $values->content ?>
+<noscript>
+    <div class="container noscript"><h2>Включите, пожалуйста, JavaScript</h2></div>
+</noscript>
+
+<div id="content_wrapper" style="display: none">
+
+    <div class="container">
+        <?php
+        echo Navbar::headerPanel();
+        echo $values->content
+        ?>
+    </div>
+
 </div>
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 
-<!--<script src="<?php /*Html::mkLnk('/js/helper.js') */?>"></script>-->
+<!--<script src="<?php /*Html::mkLnk('/js/helper.js') */ ?>"></script>-->
 <?php echo $this->js ?>
+
+<script type="text/javascript">
+    $(function () {
+        $('#content_wrapper').show();
+    });
+</script>
 
 </body>
 </html>

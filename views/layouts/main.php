@@ -134,9 +134,9 @@ use app\core\Csrf;
 <script type="text/javascript">
 
     $(function () {
-        $('.dropdown').click(function () {
+        /*$('.dropdown').click(function () {
             $(this).siblings(".submenu").toggleClass('hide');
-        });
+        });*/
 
         $('#content_wrapper').show();
     });

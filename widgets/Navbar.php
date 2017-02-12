@@ -3,6 +3,7 @@
 namespace app\widgets;
 
 use app\models\User;
+use app\helpers\Html;
 
 class Navbar
 {
@@ -56,20 +57,22 @@ class Navbar
 
         if (User::loggedId())
         {
+            $user = new User;
+
             $params['form'] = isset($params['form']) ? $params['form'] : [];
             $params['button'] = isset($params['button']) ? $params['button'] : [];
 
             $params['form']['action'] = '/user/logout';
             $params['form']['method'] = 'POST';
 
-            $s .= FormWidget::startForm($params['form'])
+            $s .= Form::startForm($params['form'])
                 . '<input type="hidden" name="logout" value="1">'
                 . '<p class="navbar-text">'
-                . CommonHelper::_h('Ваш логин:') . ' ' . UserComponent::getInstance()->getUserInfo()->login
+                . Html::_h('Ваш логин:', false) . ' ' . $user->getLoggedUserInfo()->getLogin()
                 . '</p><button type="submit" '
-                . CommonHelper::getHtmlTagParams($params['button'])
-                . '>' . CommonHelper::_h('Выйти') . '</button>'
-                . FormWidget::endForm();
+                . Html::mkHtmlTagParams($params['button'])
+                . '>' . Html::_h('Выйти', false) . '</button>'
+                . Form::endForm();
         }
 
         return $s;

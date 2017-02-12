@@ -18,11 +18,11 @@ use app\core\EntityModel;
 class User extends EntityModel
 {
     /** @var int Идентификатор пользователя. */
-    protected $id;
+    #protected $id;
 
     public function __construct($id = null)
     {
-        $this->id = $id;
+        #$this->id = $id;
         parent::__construct();
     }
 
@@ -75,4 +75,26 @@ class User extends EntityModel
         return empty($_SESSION['logged_user']['id']) ? false : $_SESSION['logged_user']['id'];
     }
 
+    public function getLoggedUserInfo()
+    {
+        $info = false;
+
+        if ($uId = self::loggedId())
+        {
+            $info = $this->getUserInfo($uId);
+        }
+
+        return $info;
+    }
+
+    public function getUserInfo($uId)
+    {
+        $res = $this->createQueryBuilder('u')
+            ->where('u.id = :id')
+            ->setParameter('id', $uId)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $res;
+    }
 }
