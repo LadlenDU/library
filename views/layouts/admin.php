@@ -56,7 +56,7 @@ use app\widgets\Navbar;
 
     <div class="container">
         <?php
-        echo Navbar::headerPanel();
+        echo Navbar::headerPanel((isset($_GET['action']) ? $_GET['action'] : 'publishers'));
         echo $values->content
         ?>
     </div>

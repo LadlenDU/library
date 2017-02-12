@@ -2,12 +2,13 @@
 
 namespace app\widgets;
 
+use app\core\Container;
 use app\models\User;
 use app\helpers\Html;
 
 class Navbar
 {
-    public static function headerPanel()
+    public static function headerPanel($selectedMenu)
     {
         $s =
             '<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -26,23 +27,29 @@ class Navbar
         }
 
         $s .= '<a class="navbar-brand" href="/">Библиотека</a>
-            <ul class="nav navbar-nav">
-            <li class="active"><a href="' . Html::mkLnk('/admin?action=publishers', false). '">Издательства</a></li>
-            <li><a href="' . Html::mkLnk('/admin?action=authors', false). '">Авторы</a></li>
-            <li><a href="' . Html::mkLnk('/admin?action=books', false). '">Книги</a></li>
-          </ul>
                     </div>';
 
         if (User::loggedId())
         {
-            $s .= '<div class="navbar-collapse collapse" id="w0-collapse">'
+            $selMenClass = new Container;
+            $selMenClass->{$selectedMenu} = 'active';
+
+            $s .= '<div class="navbar-collapse collapse" id="w0-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="' . $selMenClass->publishers . '"><a href="'
+                . Html::mkLnk('/admin?action=publishers', false) . '">Издательства</a></li>
+                        <li class="' . $selMenClass->authors . '"><a href="'
+                . Html::mkLnk('/admin?action=authors', false) . '">Авторы</a></li>
+                        <li class="' . $selMenClass->books . '"><a href="'
+                . Html::mkLnk('/admin?action=books', false) . '">Книги</a></li>
+                    </ul>'
                 . self::htmlLogoutItem(
                     [
-                        'form' => ['class' => 'navbar-right nav', 'role' => 'form'],
+                        'form' => ['class' => 'navbar-right nav'],
                         'button' => ['class' => 'btn navbar-btn']
                     ]
                 )
-                . '      </div>';
+                . '</div>';
         }
 
         $s .= '</div>
