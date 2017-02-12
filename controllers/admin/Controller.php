@@ -4,6 +4,7 @@ namespace app\controllers\admin;
 
 use app\core\Container;
 use app\models\User;
+use app\models\Publisher;
 use app\core\Web;
 
 class Controller extends \app\core\Controller
@@ -36,6 +37,21 @@ class Controller extends \app\core\Controller
 
     public function actionPublishers()
     {
-        return $this->render('admin/publishers');
+        $publisher = new Publisher;
+        $values = new Container();
+        $values->items = $publisher->getPublishers();
+        return $this->render('admin/publishers', $values);
+    }
+
+    public function actionModify()
+    {
+        $tt = 100;
+    }
+
+    public function actionCreate()
+    {
+        $publisher = new Publisher;
+        $publisher->addPublisher($_POST['name']);
+        Web::redirect('admin', ['action' => 'publishers']);
     }
 }

@@ -12,17 +12,26 @@ $this->title = Html::createTitle('список издательств');
 <script type="text/javascript">
     // <![CDATA[
     $(function () {
+
         var dtTblInfo = jQuery.extend(true, {}, app.dataTableInfo);
         dtTblInfo.columnDefs = [
             {orderable: false, targets: -1}
         ];
         dtTblInfo.bFilter = false;
         $('#publisher_list').DataTable(dtTblInfo);
+
+        /*$("#form_publisher_list").submit(function () {
+        <?php  ?>
+         });*/
     });
     // ]]>
 </script>
 <h2>Издательства</h2>
-<?php Form::startForm(['action' => '/admin/']) ?>
+<?php echo Form::startForm(['action' => '/admin?action=create&type=publisher']) ?>
+    <input type="text" name="name">
+    <input type="submit" class="btn btn-default btn-sm" value="Создать новое издательство">
+<?php echo Form::endForm() ?>
+<br><br>
 <table id="publisher_list" class="table table-striped table-bordered">
     <thead>
     <tr>
@@ -32,17 +41,19 @@ $this->title = Html::createTitle('список издательств');
     </thead>
     <tbody>
     <?php foreach ($values->items as $item): ?>
-    <tr>
-        <td><?php Html::h($item->name) ?></td>
-        <td>
-            <button type="submit" class="btn btn-default btn-sm" data-id="<?php $item->id ?>" data-action="edit">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Редактировать
-            </button>
-            <button type="submit" class="btn btn-default btn-sm" data-id="<?php $item->id ?>" data-action="remove">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Удалить
-            </button>
-        </td>
-    </tr>
+        <tr>
+            <td><?php Html::h($item->getName()) ?></td>
+            <td>
+                <a href="/admin?action=modify&id=<?php urlencode($item->getId()) ?>">
+                    <input type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Редактировать
+                    </input>
+                </a>
+                <!--<button type="submit" class="btn btn-default btn-sm" name="remove" value="remove">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Удалить
+                </button>-->
+            </td>
+        </tr>
     <?php endforeach; ?>
     </tbody>
     <tfoot>
@@ -52,4 +63,3 @@ $this->title = Html::createTitle('список издательств');
     </tr>
     </tfoot>
 </table>
-<?php Form::endForm() ?>
