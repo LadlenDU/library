@@ -84,6 +84,11 @@ class Router extends Singleton
      */
     public function run()
     {
-        echo (new $this->class)->{$this->action}();
+        $controller = new $this->class;
+        if (is_callable([$controller, 'beforeAction']))
+        {
+            $controller->beforeAction();
+        }
+        echo $controller->{$this->action}();
     }
 }

@@ -54,4 +54,9 @@ abstract class Controller
         $file = Config::inst()->appDir . 'views/layouts/' . $this->layout;
         return $this->view->renderLayout($file, $content);
     }
+
+    public function beforeAction()
+    {
+        return true;
+    }
 }

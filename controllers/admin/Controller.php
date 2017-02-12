@@ -12,8 +12,40 @@ class Controller extends \app\core\Controller
 
     public function actionIndex()
     {
-        $ret = User::loggedId() ? $this->render('admin/index') : $this->render('admin/login');
-        return $ret;
+        Web::redirect('admin', ['action' => 'authors']);
+    }
+
+    public function beforeAction()
+    {
+        if (!User::loggedId())
+        {
+            Web::redirect('admin', ['action' => 'loginpage']);
+        }
+        parent::beforeAction();
+    }
+
+    public function actionLoginPage()
+    {
+        if (User::loggedId())
+        {
+            Web::redirect('admin', ['action' => 'publishers']);
+        }
+        return $this->render('admin/login');
+    }
+
+    public function actionAuthors()
+    {
+        return $this->render('admin/authors');
+    }
+
+    public function actionBooks()
+    {
+        return $this->render('admin/books');
+    }
+
+    public function actionPublishers()
+    {
+        return $this->render('admin/publishers');
     }
 
     public function actionLogin()
@@ -34,5 +66,14 @@ class Controller extends \app\core\Controller
         }
 
         return '';
+    }
+
+    public function actionLogout()
+    {
+        $user = new User;
+        $user->logOut();
+
+        //TODO: возвращаться на страницу с которой разлогинились ??? (на данный момент не актуально)
+        Web::redirect('admin', ['action' => 'publishers']);
     }
 }

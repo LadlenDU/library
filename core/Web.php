@@ -36,8 +36,13 @@ class Web
         }
         
         $path = ltrim($path, '/');
-        header("Location: //$_SERVER[HTTP_HOST]/$path");
-        exit;
+        if ($path !== ltrim($_SERVER['REQUEST_URI'], '/'))
+        {
+            header("Location: //$_SERVER[HTTP_HOST]/$path");
+            exit;
+        }
+
+        return false;
     }
 
     /**

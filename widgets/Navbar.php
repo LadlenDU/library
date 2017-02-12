@@ -26,7 +26,13 @@ class Navbar
         }
 
         $s .= '<a class="navbar-brand" href="/">Библиотека</a>
+            <ul class="nav navbar-nav">
+            <li class="active"><a href="' . Html::mkLnk('/admin?action=publishers', false). '">Издательства</a></li>
+            <li><a href="' . Html::mkLnk('/admin?action=authors', false). '">Авторы</a></li>
+            <li><a href="' . Html::mkLnk('/admin?action=books', false). '">Книги</a></li>
+          </ul>
                     </div>';
+
         if (User::loggedId())
         {
             $s .= '<div class="navbar-collapse collapse" id="w0-collapse">'
@@ -62,7 +68,7 @@ class Navbar
             $params['form'] = isset($params['form']) ? $params['form'] : [];
             $params['button'] = isset($params['button']) ? $params['button'] : [];
 
-            $params['form']['action'] = '/user/logout';
+            $params['form']['action'] = '/admin?action=logout';
             $params['form']['method'] = 'POST';
 
             $s .= Form::startForm($params['form'])
