@@ -49,7 +49,9 @@ class Helper
         )
         {
             $msg = date(DATE_RFC822) . ":\n" . $errorStr . "\n-------------------------------------------\n\n";
-            error_log($msg, 3, Config::inst()->appDir . "runtime/logs/$type.log");
+            $dir = Config::inst()->appDir . "runtime/logs";
+            mkdir($dir, 0755, true);
+            error_log($msg, 3, "$dir/$type.log");
         }
 
         return $errorStr;
@@ -96,10 +98,12 @@ class Helper
      * @param string $val Строка, потенциально содержащая краткую нотацию.
      * @return int Значение в байтах
      */
-    public static function shorthandNotationToBytes($val) {
+    public static function shorthandNotationToBytes($val)
+    {
         $val = trim($val);
-        $last = strtolower($val[strlen($val)-1]);
-        switch($last) {
+        $last = strtolower($val[strlen($val) - 1]);
+        switch ($last)
+        {
             // The 'G' modifier is available since PHP 5.1.0
             case 'g':
                 $val *= 1024;

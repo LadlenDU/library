@@ -32,7 +32,7 @@ class Controller extends \app\core\Controller
                 return $this->render('admin/login', $params);
             }
         }
-        
+
         return '';
     }
 }

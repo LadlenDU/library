@@ -41,10 +41,16 @@ class User extends EntityModel
     public function logIn($login, $password)
     {
         $res = $this->createQueryBuilder('u')
+            ->select('u.id')
             ->where('u.login = :login AND u.passwordHash = :password')
             ->setParameters(['login' => $login, 'password' => $password])
             ->getQuery()
             ->getOneOrNullResult();
+
+        if ($res)
+        {
+            $_SESSION['logged_user']['id'] = $res['id'];
+        }
 
         return (bool)$res;
     }
