@@ -68,7 +68,7 @@ class Navbar
             $params['form'] = isset($params['form']) ? $params['form'] : [];
             $params['button'] = isset($params['button']) ? $params['button'] : [];
 
-            $params['form']['action'] = '/admin?action=logout';
+            $params['form']['action'] = '/admin/login?action=logout';
             $params['form']['method'] = 'POST';
 
             $s .= Form::startForm($params['form'])

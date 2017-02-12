@@ -12,25 +12,16 @@ class Controller extends \app\core\Controller
 
     public function actionIndex()
     {
-        Web::redirect('admin', ['action' => 'authors']);
+        Web::redirect('admin', ['action' => 'publishers']);
     }
 
     public function beforeAction()
     {
         if (!User::loggedId())
         {
-            Web::redirect('admin', ['action' => 'loginpage']);
+            Web::redirect('admin/login');
         }
         parent::beforeAction();
-    }
-
-    public function actionLoginPage()
-    {
-        if (User::loggedId())
-        {
-            Web::redirect('admin', ['action' => 'publishers']);
-        }
-        return $this->render('admin/login');
     }
 
     public function actionAuthors()
@@ -46,34 +37,5 @@ class Controller extends \app\core\Controller
     public function actionPublishers()
     {
         return $this->render('admin/publishers');
-    }
-
-    public function actionLogin()
-    {
-        if (isset($_POST['login']))
-        {
-            $user = new User;
-            if ($user->logIn($_POST['login'], $_POST['password']))
-            {
-                Web::redirect('admin');
-            }
-            else
-            {
-                $params = new Container;
-                $params->wrong_login = true;
-                return $this->render('admin/login', $params);
-            }
-        }
-
-        return '';
-    }
-
-    public function actionLogout()
-    {
-        $user = new User;
-        $user->logOut();
-
-        //TODO: возвращаться на страницу с которой разлогинились ??? (на данный момент не актуально)
-        Web::redirect('admin', ['action' => 'publishers']);
     }
 }
