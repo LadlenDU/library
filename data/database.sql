@@ -15,11 +15,9 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `book`
 (
-  `id`          VARCHAR(255) NOT NULL,
+  `id`          INT(11) UNSIGNED NOT NULL,
   `name`        VARCHAR(255),
   `description` TEXT,
-  `modified`    TIMESTAMP    NULL ON UPDATE CURRENT_TIMESTAMP,
-  `deleted`     DATETIME     NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -28,13 +26,11 @@ CREATE TABLE `book`
 
 CREATE TABLE `edition`
 (
-  `id`          VARCHAR(255) NOT NULL,
-  `book_id`     VARCHAR(255) NOT NULL,
-  `type`        VARCHAR(255)      DEFAULT NULL
+  `id`          INT(11) UNSIGNED NOT NULL,
+  `book_id`     INT(11) UNSIGNED,
+  `type`        VARCHAR(255) DEFAULT NULL
   COMMENT 'Тип (номер) издания',
   `description` VARCHAR(255) COMMENT 'Описание издания',
-  `modified`    TIMESTAMP    NULL ON UPDATE CURRENT_TIMESTAMP,
-  `deleted`     DATETIME     NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`book_id`) REFERENCES `book` (`id`)
     ON DELETE SET NULL
@@ -46,27 +42,23 @@ CREATE TABLE `edition`
 
 CREATE TABLE `publisher`
 (
-  `id`       VARCHAR(255) NOT NULL,
-  `name`     VARCHAR(255),
-  `modified` TIMESTAMP    NULL ON UPDATE CURRENT_TIMESTAMP,
-  `deleted`  DATETIME     NULL DEFAULT NULL,
+  `id`   INT(11) UNSIGNED NOT NULL,
+  `name` VARCHAR(255),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
   CHARSET = utf8
-  COMMENT 'Издательства';
+  COMMENT 'Список издательств';
 
 CREATE TABLE `book_run`
 (
-  `id`           VARCHAR(255) NOT NULL,
-  `edition_id`   VARCHAR(255) NOT NULL,
-  `publisher_id` VARCHAR(255) NOT NULL,
-  `image`        MEDIUMBLOB   NULL
+  `id`           INT(11) UNSIGNED NOT NULL,
+  `edition_id`   INT(11) UNSIGNED,
+  `publisher_id` INT(11) UNSIGNED,
+  `image`        MEDIUMBLOB       NULL
   COMMENT 'Изображение обложки',
-  `image_thumb`  MEDIUMBLOB   NULL
+  `image_thumb`  MEDIUMBLOB       NULL
   COMMENT 'Миниатюра изображения обложки',
-  `modified`     TIMESTAMP    NULL ON UPDATE CURRENT_TIMESTAMP,
-  `deleted`      DATETIME     NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`edition_id`) REFERENCES `edition` (`id`)
     ON DELETE SET NULL
@@ -83,7 +75,7 @@ CREATE TABLE `book_instance`
 (
   `id`          VARCHAR(20) NOT NULL
   COMMENT 'Библиотечный идентификатор',
-  `book_run_id` VARCHAR(255),
+  `book_run_id` INT(11) UNSIGNED,
   `modified`    TIMESTAMP   NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted`     DATETIME    NULL DEFAULT NULL
   COMMENT 'Когда удалено',
@@ -94,20 +86,18 @@ CREATE TABLE `book_instance`
 )
   ENGINE = InnoDB
   CHARSET = utf8
-  COMMENT 'Конкретная книга в библиотеке';
+  COMMENT 'Список конкретных книг в библиотеке';
 
 CREATE TABLE `author`
 (
-  `id`          VARCHAR(255) NOT NULL,
-  `first_name`  VARCHAR(255) NULL,
-  `last_name`   VARCHAR(255) NULL,
-  `birthday`    DATE         NULL,
-  `image`       MEDIUMBLOB   NULL
+  `id`          INT(11) UNSIGNED NOT NULL,
+  `first_name`  VARCHAR(255)     NULL,
+  `last_name`   VARCHAR(255)     NULL,
+  `birthday`    DATE             NULL,
+  `image`       MEDIUMBLOB       NULL
   COMMENT 'Изображение с автором (напр. фото)',
-  `image_thumb` MEDIUMBLOB   NULL
+  `image_thumb` MEDIUMBLOB       NULL
   COMMENT 'Миниатюра изображения с автором',
-  `modified`    TIMESTAMP    NULL ON UPDATE CURRENT_TIMESTAMP,
-  `deleted`     DATETIME     NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -116,8 +106,8 @@ CREATE TABLE `author`
 
 CREATE TABLE `author_book`
 (
-  `author_id` VARCHAR(255) NOT NULL,
-  `book_id`   VARCHAR(255) NOT NULL,
+  `author_id` INT(11) UNSIGNED NOT NULL,
+  `book_id`   INT(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`author_id`, book_id),
   FOREIGN KEY (`author_id`) REFERENCES `author` (`id`)
     ON DELETE CASCADE
@@ -132,11 +122,11 @@ CREATE TABLE `author_book`
 
 CREATE TABLE `user`
 (
-  `id`            VARCHAR(255) NOT NULL,
-  `login`         VARCHAR(50)  NOT NULL,
-  `password_hash` VARCHAR(255) NOT NULL,
-  `created`       TIMESTAMP    NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
-  `modified`      TIMESTAMP    NULL ON UPDATE CURRENT_TIMESTAMP,
+  `id`            INT(11) UNSIGNED NOT NULL                      AUTO_INCREMENT,
+  `login`         VARCHAR(50)      NOT NULL,
+  `password_hash` VARCHAR(255)     NOT NULL,
+  `created`       TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
+  `modified`      TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE (`login`),
   CHECK (`login` > '')

@@ -6,8 +6,15 @@ use app\core\Container;
 use app\models\User;
 use app\core\Web;
 
-class Controller extends \app\controllers\admin\Controller
+class Controller extends \app\core\Controller
 {
+    protected $layout = 'admin.php';
+
+    public function actionIndex()
+    {
+        return $this->render('admin/login');
+    }
+
     public function actionLogin()
     {
         if (isset($_POST['login']))
