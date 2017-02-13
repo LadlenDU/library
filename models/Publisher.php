@@ -17,6 +17,27 @@ class Publisher extends EntityModel
         return '\\Entities\\Publisher';
     }
 
+    public function getPublisher($id)
+    {
+        $res = $this->queryBuilder
+            ->select('publisher')
+            ->where('id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $res;
+    }
+
+    public function removePublisher($id)
+    {
+        $this->queryBuilder
+            ->delete('publisher')
+            ->where('id = :id')
+            ->setParameter('id', $id)
+            ->execute();
+    }
+
     public function addPublisher($name)
     {
         /*$em = $this->getEntityManager();
@@ -44,7 +65,7 @@ class Publisher extends EntityModel
         $sql = 'INSERT INTO publisher SET name = :name, id = (SELECT IF(MAX(id) IS NULL, 1, MAX(id) + 1) FROM publisher t)';
         $stmt = $this->queryBuilder->getConnection()->prepare($sql);
         $stmt->bindValue(':name', $name);
-        $result =  $stmt->execute();
+        $result = $stmt->execute();
 
         /*$this->queryBuilder
             ->insert('publisher')
@@ -57,15 +78,15 @@ class Publisher extends EntityModel
             #->setParameter('name', $name)
             ->setParameter(0, $name);*/
 
-/*        $qb = $this->createQueryBuilder('p');
-        $qb->ins
-        $ttt = $qb->select('IF(MAX(p.id) IS NULL, 1, MAX(p.id) + 1)')
-        ->getDQL();*/
+        /*        $qb = $this->createQueryBuilder('p');
+                $qb->ins
+                $ttt = $qb->select('IF(MAX(p.id) IS NULL, 1, MAX(p.id) + 1)')
+                ->getDQL();*/
 
-            /*->where('u.id = :id')
-            ->setParameter('id', $uId)
-            ->getQuery()
-            ->getOneOrNullResult();*/
+        /*->where('u.id = :id')
+        ->setParameter('id', $uId)
+        ->getQuery()
+        ->getOneOrNullResult();*/
 
         /*$publisher = new \Entities\Publisher();
         $publisher->setName($name);

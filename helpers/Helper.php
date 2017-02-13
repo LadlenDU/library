@@ -50,7 +50,10 @@ class Helper
         {
             $msg = date(DATE_RFC822) . ":\n" . $errorStr . "\n-------------------------------------------\n\n";
             $dir = Config::inst()->appDir . "runtime/logs";
-            mkdir($dir, 0755, true);
+            if (!is_dir($dir))
+            {
+                mkdir($dir, 0755, true);
+            }
             error_log($msg, 3, "$dir/$type.log");
         }
 

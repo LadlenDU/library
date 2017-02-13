@@ -40,7 +40,7 @@ class Controller extends \app\core\Controller
         $publisher = new Publisher;
         $values = new Container();
         $values->items = $publisher->getPublishers();
-        return $this->render('admin/publishers', $values);
+        return $this->render('admin/publishers/list', $values);
     }
 
     public function actionModify()
