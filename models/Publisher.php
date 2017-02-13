@@ -42,7 +42,10 @@ class Publisher extends EntityModel
 
     public function restorePublisher($id)
     {
-
+        $record = $this->find($id);
+        $record->setDeleted(null);
+        $this->getEntityManager()->persist($record);
+        $this->getEntityManager()->flush();
     }
 
     public function removePublisher($id)

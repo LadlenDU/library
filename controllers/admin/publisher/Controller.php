@@ -46,4 +46,11 @@ class Controller extends \app\controllers\admin\Controller
         $publisher->removePublisher($_POST['id']);
         Web::redirect('admin', ['action' => 'publishers']);
     }
+
+    public function actionRestore()
+    {
+        $publisher = new Publisher;
+        $publisher->restorePublisher($_POST['id']);
+        Web::redirect('admin', ['action' => 'publishers']);
+    }
 }

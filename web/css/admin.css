@@ -11,3 +11,11 @@ body {
     float: left;
     margin-right: 10px;
 }
+
+#publisher_list td {
+    vertical-align: middle;
+}
+
+.dimmed {
+    color: #AAA;
+}
