@@ -2,13 +2,8 @@
 
 namespace app\models;
 
-#use app\core\Model;
 use app\core\Web;
 use app\core\EntityModel;
-#use app\helpers\Db;
-#use Entities;
-#use Doctrine\ORM\EntityRepository;
-#use Doctrine\ORM\Mapping\ClassMetadata;
 
 /**
  * User модель пользователя.

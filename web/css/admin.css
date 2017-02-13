@@ -7,12 +7,12 @@ body {
     text-align: center;
 }
 
-#publisher_list button {
+#admin_items_list button {
     float: left;
     margin-right: 10px;
 }
 
-#publisher_list td {
+#admin_items_list td {
     vertical-align: middle;
 }
 

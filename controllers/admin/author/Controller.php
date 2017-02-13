@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\admin\publisher;
+namespace app\controllers\admin\author;
 
 use app\core\Container;
 use app\models\Publisher;
@@ -44,6 +44,13 @@ class Controller extends \app\controllers\admin\Controller
     {
         $publisher = new Publisher;
         $publisher->removePublisher($_POST['id']);
+        Web::redirect('admin', ['action' => 'publishers']);
+    }
+
+    public function actionRestore()
+    {
+        $publisher = new Publisher;
+        $publisher->restorePublisher($_POST['id']);
         Web::redirect('admin', ['action' => 'publishers']);
     }
 }

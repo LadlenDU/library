@@ -18,7 +18,7 @@ $this->title = Html::createTitle('список издательств');
             {orderable: false, targets: -1}
         ];
         dtTblInfo.bFilter = false;
-        $('#publisher_list').DataTable(dtTblInfo);
+        $('#admin_items_list').DataTable(dtTblInfo);
 
         /*$("#form_publisher_list").submit(function () {
         <?php  ?>
@@ -32,7 +32,7 @@ $this->title = Html::createTitle('список издательств');
 <input type="submit" class="btn btn-default btn-sm" value="Создать новое издательство">
 <?php echo Form::endForm() ?>
 <br><br>
-<table id="publisher_list" class="table table-striped table-bordered">
+<table id="admin_items_list" class="table table-striped table-bordered">
     <thead>
     <tr>
         <th>Название</th>

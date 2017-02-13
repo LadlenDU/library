@@ -20,6 +20,12 @@ abstract class EntityModel extends EntityRepository
         parent::__construct(Db::em(), $metadata);
     }
 
+    protected function saveToDb($record)
+    {
+        $this->getEntityManager()->persist($record);
+        $this->getEntityManager()->flush();
+    }
+
     /**
      * Возвращает название сущности БД.
      *

@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\core\Web;
 use app\core\EntityModel;
 
 /**
