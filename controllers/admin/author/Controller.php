@@ -2,32 +2,33 @@
 
 namespace app\controllers\admin\author;
 
-use app\core\Container;
-use app\models\Publisher;
 use app\core\Web;
+use app\core\Container;
+use app\models\Author;
+
 
 class Controller extends \app\controllers\admin\Controller
 {
     public function actionModify()
     {
-        $publisher = new Publisher;
+        $publisher = new Author;
 
         if (!empty($_GET['id']))
         {
-            if ($item = $publisher->getPublisher($_GET['id']))
+            if ($item = $publisher->getAuthor($_GET['id']))
             {
                 $values = new Container();
                 $values->id = $_GET['id'];
                 $values->name = $item['name'];
-                return $this->render('admin/publishers/edit', $values);
+                return $this->render('admin/authors/edit', $values);
             }
             //TODO: рендер страницы ошибки
         }
 
         if (!empty($_POST['id']))
         {
-            $publisher->updatePublisher($_POST['id'], $_POST['name']);
-            Web::redirect('admin', ['action' => 'publishers']);
+            $publisher->updateAuthor($_POST['id'], $_POST['name']);
+            Web::redirect('admin', ['action' => 'authors']);
         }
 
         return $this->render('404');
@@ -35,22 +36,28 @@ class Controller extends \app\controllers\admin\Controller
 
     public function actionCreate()
     {
-        $publisher = new Publisher;
-        $publisher->addPublisher($_POST['name']);
-        Web::redirect('admin', ['action' => 'publishers']);
+        $publisher = new Author;
+        $publisher->addAuthor(
+            [
+                'first_name' => $_POST['first_name'],
+                'last_name' => $_POST['last_name'],
+                'birthday' => strtotime($_POST['birthday'])
+            ]
+        );
+        Web::redirect('admin', ['action' => 'authors']);
     }
 
     public function actionRemove()
     {
-        $publisher = new Publisher;
-        $publisher->removePublisher($_POST['id']);
-        Web::redirect('admin', ['action' => 'publishers']);
+        $publisher = new Author;
+        $publisher->removeAuthor($_POST['id']);
+        Web::redirect('admin', ['action' => 'authors']);
     }
 
     public function actionRestore()
     {
-        $publisher = new Publisher;
-        $publisher->restorePublisher($_POST['id']);
-        Web::redirect('admin', ['action' => 'publishers']);
+        $publisher = new Author;
+        $publisher->restoreAuthor($_POST['id']);
+        Web::redirect('admin', ['action' => 'authors']);
     }
 }

@@ -5,6 +5,7 @@ namespace app\controllers\admin;
 use app\core\Container;
 use app\models\User;
 use app\models\Publisher;
+use app\models\Author;
 use app\core\Web;
 
 class Controller extends \app\core\Controller
@@ -27,7 +28,7 @@ class Controller extends \app\core\Controller
 
     public function actionAuthors()
     {
-        return $this->render('admin/authors/list');
+        return $this->render('admin/authors/list', new Container(['items' => (new Author)->getAuthors()]));
     }
 
     public function actionBooks()

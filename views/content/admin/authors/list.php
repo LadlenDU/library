@@ -42,7 +42,7 @@ $this->title = Html::createTitle('список авторов');
         <tr class="<?php echo $item->getDeleted() ? 'dimmed' : '' ?>">
             <td><?php Html::h($item->getFirstName()) ?></td>
             <td><?php Html::h($item->getLastName()) ?></td>
-            <td><?php Html::h($item->getBirthday()) ?></td>
+            <td><?php Html::h($item->getBirthday()->format('F j, Y')) ?></td>
             <td>
                 <?php if ($item->getDeleted()): ?>
                     <?php echo Form::startForm(['action' => '/admin/author?action=restore']) ?>
@@ -69,7 +69,9 @@ $this->title = Html::createTitle('список авторов');
     </tbody>
     <tfoot>
     <tr>
-        <th>Название</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Родился</th>
         <th>&nbsp;</th>
     </tr>
     </tfoot>

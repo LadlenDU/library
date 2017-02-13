@@ -2,9 +2,9 @@
 
 namespace app\controllers\admin\publisher;
 
+use app\core\Web;
 use app\core\Container;
 use app\models\Publisher;
-use app\core\Web;
 
 class Controller extends \app\controllers\admin\Controller
 {

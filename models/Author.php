@@ -55,7 +55,7 @@ class Author extends EntityModel
         $stmt = $this->queryBuilder->getConnection()->prepare($sql);
         $stmt->bindValue(':first_name', $data['first_name']);
         $stmt->bindValue(':last_name', $data['last_name']);
-        $stmt->bindValue(':birthday', date('Y-m-d H:i:s', $data['birthday']));
+        $stmt->bindValue(':birthday', date('Y-m-d', $data['birthday']));
         return $stmt->execute();
     }
 
