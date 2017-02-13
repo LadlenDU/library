@@ -18,6 +18,8 @@ CREATE TABLE `book`
   `id`          INT(11) UNSIGNED NOT NULL,
   `name`        VARCHAR(255),
   `description` TEXT,
+  `created`     TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
+  `modified`    TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -28,9 +30,11 @@ CREATE TABLE `edition`
 (
   `id`          INT(11) UNSIGNED NOT NULL,
   `book_id`     INT(11) UNSIGNED,
-  `type`        VARCHAR(255) DEFAULT NULL
+  `type`        VARCHAR(255)                                   DEFAULT NULL
   COMMENT 'Тип (номер) издания',
   `description` VARCHAR(255) COMMENT 'Описание издания',
+  `created`     TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
+  `modified`    TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`book_id`) REFERENCES `book` (`id`)
     ON DELETE SET NULL
@@ -42,8 +46,10 @@ CREATE TABLE `edition`
 
 CREATE TABLE `publisher`
 (
-  `id`   INT(11) UNSIGNED NOT NULL,
-  `name` VARCHAR(255),
+  `id`       INT(11) UNSIGNED NOT NULL,
+  `name`     VARCHAR(255),
+  `created`  TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
+  `modified` TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -59,6 +65,8 @@ CREATE TABLE `book_run`
   COMMENT 'Изображение обложки',
   `image_thumb`  MEDIUMBLOB       NULL
   COMMENT 'Миниатюра изображения обложки',
+  `created`      TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
+  `modified`     TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`edition_id`) REFERENCES `edition` (`id`)
     ON DELETE SET NULL
@@ -98,6 +106,8 @@ CREATE TABLE `author`
   COMMENT 'Изображение с автором (напр. фото)',
   `image_thumb` MEDIUMBLOB       NULL
   COMMENT 'Миниатюра изображения с автором',
+  `created`     TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
+  `modified`    TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB

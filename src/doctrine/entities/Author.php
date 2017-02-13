@@ -1,6 +1,6 @@
 <?php
 
-namespace Entities;
+
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -55,6 +55,20 @@ class Author
      * @ORM\Column(name="image_thumb", type="blob", length=16777215, nullable=true)
      */
     private $imageThumb;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime", nullable=false)
+     */
+    private $created = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modified", type="datetime", nullable=true)
+     */
+    private $modified;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -210,6 +224,54 @@ class Author
     }
 
     /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Author
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set modified
+     *
+     * @param \DateTime $modified
+     *
+     * @return Author
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+
+        return $this;
+    }
+
+    /**
+     * Get modified
+     *
+     * @return \DateTime
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
+
+    /**
      * Add book
      *
      * @param \Book $book
@@ -243,3 +305,4 @@ class Author
         return $this->book;
     }
 }
+

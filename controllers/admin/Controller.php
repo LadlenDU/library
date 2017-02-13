@@ -27,12 +27,12 @@ class Controller extends \app\core\Controller
 
     public function actionAuthors()
     {
-        return $this->render('admin/authors');
+        return $this->render('admin/authors/list');
     }
 
     public function actionBooks()
     {
-        return $this->render('admin/books');
+        return $this->render('admin/books/list');
     }
 
     public function actionPublishers()
