@@ -19,14 +19,25 @@ class Publisher extends EntityModel
 
     public function getPublisher($id)
     {
-        $res = $this->queryBuilder
-            ->select('publisher')
-            ->where('id = :id')
+        $res = $this->createQueryBuilder('p')
+            ->select('p.name')
+            ->where('p.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();
 
         return $res;
+    }
+
+    public function updatePublisher($id, $name)
+    {
+        return $this->queryBuilder
+            ->update('publisher')
+            ->set('name', ':name')
+            ->where('id = :id')
+            ->setParameter('id', $id)
+            ->setParameter('name', $name)
+            ->execute();
     }
 
     public function removePublisher($id)

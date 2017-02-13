@@ -12,17 +12,26 @@ class Controller extends \app\controllers\admin\Controller
     public function actionModify()
     {
         $publisher = new Publisher;
+
         if (!empty($_GET['id']))
         {
             if ($item = $publisher->getPublisher($_GET['id']))
             {
-                return $this->render('admin/publishers/edit', ['id' => $_GET['id'], 'name' => $item->getName()]);
+                $values = new Container();
+                $values->id = $_GET['id'];
+                $values->name = $item['name'];
+                return $this->render('admin/publishers/edit', $values);
             }
-            else
-            {
-                return $this->render('404');
-            }
+            //TODO: рендер страницы ошибки
         }
+
+        if (!empty($_POST['id']))
+        {
+            $publisher->updatePublisher($_POST['id'], $_POST['name']);
+            Web::redirect('admin', ['action' => 'publishers']);
+        }
+
+        return $this->render('404');
     }
 
     public function actionCreate()

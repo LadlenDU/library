@@ -28,8 +28,8 @@ $this->title = Html::createTitle('список издательств');
 </script>
 <h2>Издательства</h2>
 <?php echo Form::startForm(['action' => '/admin/publisher?action=create']) ?>
-    <input type="text" name="name">
-    <input type="submit" class="btn btn-default btn-sm" value="Создать новое издательство">
+<input type="text" name="name">
+<input type="submit" class="btn btn-default btn-sm" value="Создать новое издательство">
 <?php echo Form::endForm() ?>
 <br><br>
 <table id="publisher_list" class="table table-striped table-bordered">
@@ -44,11 +44,12 @@ $this->title = Html::createTitle('список издательств');
         <tr>
             <td><?php Html::h($item->getName()) ?></td>
             <td>
-                <?php echo Form::startForm(['method' => 'GET', 'action' => '/admin/publisher?action=modify&id=' . urlencode($item->getId())]) ?>
-                <button type="submit" class="btn btn-default btn-sm">
+                <?php #echo Form::startForm(['method' => 'GET', 'action' => '/admin/publisher?action=modify&id=' . urlencode($item->getId())]) ?>
+                <a href="/admin/publisher?action=modify&id=<?php echo urlencode($item->getId()) ?>"
+                   class="btn btn-default btn-sm" style="float:left;margin-right:10px">
                     <span class="glyphicon glyphicon-edit"></span>&nbsp;Редактировать
-                </button>
-                <?php echo Form::endForm() ?>
+                </a>
+                <?php #echo Form::endForm() ?>
                 <?php echo Form::startForm(['action' => '/admin/publisher?action=remove']) ?>
                 <input type="hidden" name="id" value="<?php Html::h($item->getId()) ?>">
                 <button type="submit" class="btn btn-default btn-sm">
