@@ -5,11 +5,17 @@ namespace app\core;
 use app\helpers\Db;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\DBAL\DriverManager;
 
 abstract class EntityModel extends EntityRepository
 {
+    protected $queryBuilder;
+
     public function __construct()
     {
+        $conn = DriverManager::getConnection(Config::inst()->database['connection']);
+        $this->queryBuilder = $conn->createQueryBuilder();
+
         $metadata = new ClassMetadata($this->entityName());
         parent::__construct(Db::em(), $metadata);
     }

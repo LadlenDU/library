@@ -40,15 +40,22 @@ class Publisher extends EntityModel
 
         //SELECT IF(MAX(field_to_increment) IS NULL, 1, MAX(field_to_increment) + 1) FROM table t)
 
-        $this->createQueryBuilder('p')
-            ->insert('Publisher')
+        #$sql = 'INSERT INTO publisher SET name = :name';
+        $sql = 'INSERT INTO publisher SET name = :name, id = (SELECT IF(MAX(id) IS NULL, 1, MAX(id) + 1) FROM publisher t)';
+        $stmt = $this->queryBuilder->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name);
+        $result =  $stmt->execute();
+
+        /*$this->queryBuilder
+            ->insert('publisher')
             ->values(
                 array(
-                    'name' => ':name',
+                    #'name' => ':name',
+                    'name' => '?',
                 )
             )
-            ->setParameter('name', $name)
-        ;
+            #->setParameter('name', $name)
+            ->setParameter(0, $name);*/
 
 /*        $qb = $this->createQueryBuilder('p');
         $qb->ins
