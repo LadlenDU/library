@@ -43,9 +43,10 @@ class Publisher extends EntityModel
     public function removePublisher($id)
     {
         $this->queryBuilder
-            ->delete('publisher')
+            ->update('publisher')
             ->where('id = :id')
             ->setParameter('id', $id)
+            ->setParameter('deleted', new \DateTime("now"))
             ->execute();
     }
 

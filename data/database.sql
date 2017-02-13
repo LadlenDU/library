@@ -20,6 +20,7 @@ CREATE TABLE `book`
   `description` TEXT,
   `created`     TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
   `modified`    TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted`     DATETIME         NULL                          DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -35,6 +36,7 @@ CREATE TABLE `edition`
   `description` VARCHAR(255) COMMENT 'Описание издания',
   `created`     TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
   `modified`    TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted`     DATETIME         NULL                          DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`book_id`) REFERENCES `book` (`id`)
     ON DELETE SET NULL
@@ -50,6 +52,7 @@ CREATE TABLE `publisher`
   `name`     VARCHAR(255),
   `created`  TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
   `modified` TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted`  DATETIME         NULL                          DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -67,6 +70,7 @@ CREATE TABLE `book_run`
   COMMENT 'Миниатюра изображения обложки',
   `created`      TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
   `modified`     TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted`      DATETIME         NULL                          DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`edition_id`) REFERENCES `edition` (`id`)
     ON DELETE SET NULL
@@ -108,6 +112,7 @@ CREATE TABLE `author`
   COMMENT 'Миниатюра изображения с автором',
   `created`     TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
   `modified`    TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted`     DATETIME         NULL                          DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -137,6 +142,7 @@ CREATE TABLE `user`
   `password_hash` VARCHAR(255)     NOT NULL,
   `created`       TIMESTAMP        NOT NULL                      DEFAULT CURRENT_TIMESTAMP,
   `modified`      TIMESTAMP        NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted`       DATETIME         NULL                          DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE (`login`),
   CHECK (`login` > '')

@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -48,6 +48,13 @@ class Edition
      * @ORM\Column(name="modified", type="datetime", nullable=true)
      */
     private $modified;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deleted", type="datetime", nullable=true)
+     */
+    private $deleted;
 
     /**
      * @var \Book
@@ -164,6 +171,30 @@ class Edition
     public function getModified()
     {
         return $this->modified;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param \DateTime $deleted
+     *
+     * @return Edition
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return \DateTime
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
     }
 
     /**
