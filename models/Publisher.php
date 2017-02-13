@@ -40,13 +40,19 @@ class Publisher extends EntityModel
             ->execute();
     }
 
+    public function restorePublisher($id)
+    {
+
+    }
+
     public function removePublisher($id)
     {
         $this->queryBuilder
             ->update('publisher')
+            ->set('deleted', ':deleted')
             ->where('id = :id')
             ->setParameter('id', $id)
-            ->setParameter('deleted', new \DateTime("now"))
+            ->setParameter('deleted', date('Y-m-d H:i:s'))
             ->execute();
     }
 

@@ -19,7 +19,7 @@ class Controller extends \app\controllers\admin\Controller
                 $values = new Container();
                 $values->id = $_GET['id'];
                 $values->name = $item['name'];
-                return $this->render('admin/author/edit', $values);
+                return $this->render('admin/publishers/edit', $values);
             }
             //TODO: рендер страницы ошибки
         }
