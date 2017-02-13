@@ -27,7 +27,7 @@ $this->title = Html::createTitle('список издательств');
     // ]]>
 </script>
 <h2>Издательства</h2>
-<?php echo Form::startForm(['action' => '/admin?action=create&type=publisher']) ?>
+<?php echo Form::startForm(['action' => '/admin/publisher?action=create']) ?>
     <input type="text" name="name">
     <input type="submit" class="btn btn-default btn-sm" value="Создать новое издательство">
 <?php echo Form::endForm() ?>
